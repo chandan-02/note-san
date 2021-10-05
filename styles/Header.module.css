@@ -1,0 +1,24 @@
+.container{
+    @apply flex flex-wrap items-center py-5 pl-5 shadow-md justify-between md:pl-10 md:py-0
+}
+
+.right {
+    @apply flex
+}
+
+.logo {
+    @apply cursor-pointer
+}
+
+.ham {
+    @apply flex md:hidden justify-center items-center pr-5 cursor-pointer 
+}
+
+.nav_links {
+    @apply hidden pr-10 md:flex
+}
+
+.text_style{
+    @apply font-poppins text-xl font-semibold px-7 flex pt-5 justify-center items-center cursor-pointer hover:underline md:pt-0
+}
+

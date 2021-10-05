@@ -14,7 +14,8 @@ module.exports = {
       m_dark_orange:'#FF9B73',
       m_lime: '#E4EE8E',
       m_blue:'#01D4FF',
-      m_light_orange:'#FFC972'
+      m_light_orange:'#FFC972',
+      yellow:colors.yellow
     },
     extend: {
       fontFamily:{

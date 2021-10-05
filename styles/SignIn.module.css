@@ -1,0 +1,7 @@
+.container{
+    @apply bg-black px-8 py-2 rounded-lg cursor-pointer m-7
+}
+
+.text {
+    @apply font-poppins font-semibold text-white hover:text-m_purple
+}

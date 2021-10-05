@@ -1,6 +1,6 @@
-import type, { NextComponentType } from 'next/types'
+import { NextComponentType } from 'next/types'
 import Image from 'next/image';
-import styles from '../styles/Footer.module.css';
+import styles from '../../styles/Footer.module.css';
 import Link from 'next/link';
 
 const Footer: NextComponentType = () => {
