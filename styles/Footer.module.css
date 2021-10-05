@@ -1,0 +1,12 @@
+
+.container{
+    @apply bottom-0 fixed bg-footer_bg flex w-screen items-center justify-center pl-10 px-5 py-4 md:justify-start md:py-5; 
+}
+
+.git_img {
+   @apply cursor-pointer 
+}
+
+.text {
+    @apply cursor-pointer hover:text-m_dark_orange font-poppins text-base font-semibold px-5 md:text-lg;
+}
