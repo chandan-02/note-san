@@ -1,0 +1,11 @@
+.container {
+    @apply flex flex-col items-center md:my-7
+}
+
+.box{
+    @apply border-footer_bg rounded p-10 md:border-2 text-center
+}
+
+.text {
+    @apply font-poppins pb-2
+}

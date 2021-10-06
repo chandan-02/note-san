@@ -1,17 +1,20 @@
-import { NextComponentType } from 'next/types'
+import type{ NextComponentType } from 'next/types'
 import Head from 'next/head';
 import styles from '../../styles/Header.module.css';
 import Image from 'next/image';
 import logo from '../../public/logo.png';
 import SignIn from '../sign_in';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import {useSession} from 'next-auth/client';
 
 const Header: NextComponentType = () => {
     const router = useRouter();
     const [toggle,setToggle] = useState<Boolean>(true);
+    const [session,load] = useSession(); 
     const hamMobile:string = 'w-screen flex flex-col justify-center items-center';
     const nav_items = [{name:'Home',path:'/'},{name:'Dashboard',path:'/dashboard'},{name:'About',path:'/about'}]
+
     const handleRoute = (e: string):void=> {
         router.push(e)
     }
@@ -19,6 +22,11 @@ const Header: NextComponentType = () => {
     const whichPage= (name:string):number => {
         return router.pathname == name ? 700 : 600
     }
+
+    useEffect(() => {
+        // console.log(session,load);
+    },[session,load])
+
     return (
         <>
             <Head>
