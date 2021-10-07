@@ -15,13 +15,13 @@ const Authenticate: NextPage = () => {
 
                 <Image src="/auth.svg" alt="auth_svg" height="300" width="350" />
                 {
-                    !session ? <h1 className={styles.text}>sign-in using OAuth </h1> : <h1 className={styles.text}>already signed-in, log out? </h1>
+                    !session ? <h1 className={styles.text}>Sign-in using OAuth </h1> : <h1 className={styles.text}>Already signed-in, log out ? </h1>
                 }
                 {
                     !load && !session && (
                         <div>
-                            <OAuth btnName="github" btnText="sign in with Github" action="signin" />
-                            <OAuth btnName="sxx" btnText="sign in with Google" action="signin" />
+                            <OAuth btnName="github" btnText="Sign in with Github" action="signin" />
+                            <OAuth btnName="google" btnText="Sign in with Google" action="signin" />
                         </div>
                     )
                 }
