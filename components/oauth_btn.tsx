@@ -15,13 +15,12 @@ const OAuth: React.FC<IProps> = ({ btnName, btnText, action }) => {
         e.preventDefault();
         action == 'signin' ? signIn(btnName) : signOut();
     }
-    console.log(btnName)
+
     return (
         <Link href={`/api/auth/${action}`} passHref>
             <div className={styles.container} onClick={(e) => handleSignIn(e)}>
                 {
-                    btnName!='logout' ? (<Image src={btnName == 'github' ? '/git_fff.svg' : '/google.svg'} alt="btn_logo" height="25" width="25" />) :
-                    ''
+                    btnName!='logout' && (<Image src={btnName == 'github' ? '/git_fff.svg' : '/google.svg'} alt="btn_logo" height="25" width="25" />) 
                 }
                 <h1 className={styles.text}>{btnText}</h1>
             </div>

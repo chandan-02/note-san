@@ -1,5 +1,5 @@
 .container{
-    @apply bg-black px-8 py-2 rounded-lg cursor-pointer m-7
+    @apply bg-black px-8 py-2 rounded-lg cursor-pointer mx-7 ring-offset-1 ring-m_purple hover:ring-2
 }
 
 .text {

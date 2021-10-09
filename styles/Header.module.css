@@ -1,5 +1,5 @@
 .container{
-    @apply flex flex-wrap items-center py-5 pl-5 shadow-md justify-between md:pl-10 md:py-0
+    @apply flex flex-wrap items-center py-5 pl-5 justify-between shadow md:pl-10
 }
 
 .right {
@@ -19,6 +19,6 @@
 }
 
 .text_style{
-    @apply font-poppins text-xl font-semibold px-7 flex pt-5 justify-center items-center cursor-pointer hover:underline md:pt-0
+    @apply font-poppins text-xl font-semibold px-7 flex pb-5 justify-center items-center cursor-pointer hover:underline md:pt-0 md:pb-0
 }
 

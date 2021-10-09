@@ -1,0 +1,12 @@
+.container {
+    @apply flex flex-col pl-5 pr-5 my-7 md:pl-10 md:pr-10 md:items-center
+}
+.title {
+    @apply font-poppins text-xl font-bold mb-7
+}
+.box{
+    @apply border-footer_bg rounded p-5 md:border-2 my-2 md:mb-3 md:p-10
+}
+.box2 {
+    @apply mb-5
+}

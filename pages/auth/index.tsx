@@ -4,11 +4,10 @@ import styles from '../../styles/Auth.module.css';
 import OAuth from '../../components/oauth_btn';
 import { useSession } from 'next-auth/client';
 import { useEffect } from 'react';
+
 const Authenticate: NextPage = () => {
     const [session, load] = useSession();
-    useEffect(() => {
-        console.log(session, load);
-    }, [session, load])
+    
     return (
         <div className={styles.container}>
             <div className={styles.box}>
