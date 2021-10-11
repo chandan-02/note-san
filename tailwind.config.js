@@ -9,6 +9,8 @@ module.exports = {
       current: 'currentColor',
       black: colors.black,
       white: colors.white,
+      pink:colors.pink,
+      purple:colors.purple,
       footer_bg: '#f1f1f1',
       m_purple: '#B894FF',
       m_dark_orange:'#FF9B73',
@@ -20,6 +22,9 @@ module.exports = {
     extend: {
       fontFamily:{
         'poppins': ['Poppins'],
+      },
+      spacing:{
+        
       }
     },
   },

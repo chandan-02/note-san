@@ -1,7 +1,7 @@
 .container{
-    @apply bg-black px-8 py-2 rounded-lg cursor-pointer mx-7 ring-offset-1 ring-m_purple hover:ring-2
+    @apply transition-all bg-black px-8 py-2 rounded-lg cursor-pointer mx-7 ring-offset-1 ring-m_purple hover:ring-2
 }
 
 .text {
-    @apply font-poppins font-semibold text-white hover:text-m_purple
+    @apply transition-all font-poppins font-semibold text-white hover:text-m_purple
 }

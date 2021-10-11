@@ -4,10 +4,8 @@ import Header from '../components/layout/header';
 import Footer from '../components/layout/footer';
 import {Provider} from 'next-auth/client';
 
-import { useState } from 'react';
-
 function MyApp({ Component, pageProps }: AppProps) {
-  const [name,setName] = useState<string>('/')
+ 
   return (
     <Provider>
       <Header />

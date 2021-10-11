@@ -1,5 +1,8 @@
 .container {
-    @apply flex flex-col items-center md:my-7
+    min-height:calc(100vh - theme('spacing.36'));
+}
+.container {
+    @apply flex flex-col items-center md:my-7;
 }
 
 .box{
@@ -7,5 +10,8 @@
 }
 
 .text {
-    @apply font-poppins pb-2
+    @apply font-poppins pb-2 
+}
+.loadingSpinner {
+    @apply flex justify-center items-center transition-all bg-black px-8 py-2 rounded-lg cursor-pointer mx-7 m-2
 }

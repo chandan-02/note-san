@@ -1,6 +1,6 @@
 
 .container{
-    @apply bottom-0 fixed bg-footer_bg flex w-screen items-center justify-center pl-10 px-5 py-4 md:justify-start md:py-5; 
+    @apply bg-footer_bg flex w-full items-center justify-center pl-10 px-5 py-4 md:justify-start md:py-4; 
 }
 
 .git_img {

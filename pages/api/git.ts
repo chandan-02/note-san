@@ -1,11 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-type Data = {
-  name: string | Promise<any>
-}
+import data from '../../helper/getGitinfo'
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  res.status(200).json({ name:"Hello!" })
+  res.status(200).json({ data:data })
 }
