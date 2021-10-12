@@ -1,11 +1,13 @@
 const axios = require('axios').create({
     baseURL: 'https://api.github.com/repos',
     headers: {
+        Authorization:process.env.GIT_ACCESS_TOKEN,
         Accept: "Accept: application/vnd.github.v3+json"
     }
 })
 
 interface IGit {
+    name:string,
     userImg: string;
     description: string;
     lang: string;
@@ -16,6 +18,7 @@ interface IGit {
 const getInfo = async (): Promise<any> => {
     const result = await axios.get('/chandan-02/note-san');
     const git: IGit = {
+        name:'note-san',
         userImg: result.data.owner.avatar_url,
         description: result.data.description,
         lang: result.data.language,

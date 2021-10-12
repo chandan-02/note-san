@@ -1,0 +1,15 @@
+.container {
+    @apply flex justify-center mx-5;
+}
+
+.box {
+    @apply flex rounded justify-center border-2 border-gray-200;
+}
+
+.left{
+    @apply  p-2 md:p-4;
+}
+
+.right{
+    @apply  p-2 md:p-4;
+}

@@ -1,42 +1,55 @@
 import type { NextPage } from 'next';
-import styles from '../../styles/About.module.css';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import AboutHero from '../../components/aboutHeroSection';
-import useDimension from '../../helper/getDimension';
-import {useState,useEffect} from 'react';
 import axios from 'axios';
+import styles from '../../styles/About.module.css';
+import useDimension from '../../helper/getDimension';
+import AboutHero from '../../components/aboutHeroSection';
+import GitRepo from '../../components/gitRepo';
 
 interface IPhoto {
   name: string;
   h: number;
   w: number;
-  hMobile:number;
-  wMobile:number;
+  hMobile: number;
+  wMobile: number;
 }
 
 const About: NextPage = () => {
-  
-  const [git,setGit] = useState()
-  const [width,height] = useDimension();
+
+  const [git, setGit] = useState({
+    data: {
+      name: 'note-san',
+      description: 'a note taking and sharing platform',
+      userImg: 'https://avatars.githubusercontent.com/u/45965174?v=4',
+      tags: ["nextjs",
+        "nodejs",
+        "note-app",
+        "postgresql",
+        "tailwindcss"], stars: 2, lang: 'TypeScript'
+    }
+  })
+  const [width, height] = useDimension();
 
   const img: Array<IPhoto> = [
-    { name: 'nextjs', h: 80, w: 90 , hMobile:50,wMobile:55},
-    { name: 'typescript', h: 70, w: 70 ,hMobile:35,wMobile:35},
-    { name: 'tailwind', h: 60, w: 170 ,hMobile:30,wMobile:85},
-    { name: 'nodejs', h: 80, w: 80 ,hMobile:40,wMobile:40},
-    { name: 'postgresql', h: 70, w: 70 ,hMobile:40,wMobile:40},
+    { name: 'nextjs', h: 80, w: 90, hMobile: 50, wMobile: 55 },
+    { name: 'typescript', h: 70, w: 70, hMobile: 35, wMobile: 35 },
+    { name: 'tailwind', h: 60, w: 170, hMobile: 30, wMobile: 85 },
+    { name: 'nodejs', h: 80, w: 80, hMobile: 40, wMobile: 40 },
+    { name: 'postgresql', h: 70, w: 70, hMobile: 40, wMobile: 40 },
   ];
   useEffect(() => {
     const getInfo = async () => {
-      try { 
+      try {
         const result = await axios.get('/api/git');
-        result && setGit(result.data)
+        result && setGit(result.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
     getInfo();
   })
+
   return (
     <div className={styles.container}>
       <AboutHero />
@@ -57,11 +70,14 @@ const About: NextPage = () => {
       </div>
 
       <div className={styles.bottom}>
-        <h1 className={styles.tech}>Check Out </h1>
-          <div className={styles.gitProfile}>
-            <h1>something</h1>
-          </div>
+        <h1 className={styles.tech}>Github&nbsp; <p className="text-m_dark_blue">Repository </p></h1>
+        <GitRepo gitInfo={git.data} />
       </div>
+
+      <h1 className={styles.tech}>Note</h1>
+          <div className="flex items-center justify-center pb-20 mx-5 md:mx-0 text-center">
+              <h1 className="font-poppins text-sm md:text-base p-5 bg-red-100 border-2 rounded border-red-500"> DB is being hosted on Heroku with free dyno; so, there can/will be a delay.</h1>
+          </div>
     </div>
   )
 }

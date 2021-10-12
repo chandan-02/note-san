@@ -9,9 +9,9 @@
   @apply flex justify-center items-center font-poppins text-2xl font-bold md:text-4xl py-8 text-center md:py-16 ;
 }
 .box {
-  @apply bg-footer_bg mb-10  ;
+  @apply bg-footer_bg ;
 }
 .bottom {
-  
+  /* @apply my-5; */
 }
 
