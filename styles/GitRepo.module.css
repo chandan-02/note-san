@@ -1,9 +1,9 @@
 .container {
-    @apply flex justify-center mx-5;
+    @apply flex justify-center mx-5 ;
 }
 
 .box {
-    @apply flex rounded justify-center border-2 border-gray-200;
+    @apply flex rounded justify-center border-2 border-gray-200 transition-all filter hover:shadow-2xl hover:border-blue-200 cursor-pointer;
 }
 
 .left{

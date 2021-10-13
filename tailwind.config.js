@@ -15,6 +15,7 @@ module.exports = {
       m_dark_blue:'#00A9CC',
       red:colors.red,
       footer_bg: '#f1f1f1',
+      m_gray:'#E1E1E1',
       m_purple: '#B894FF',
       m_dark_orange:'#FF9B73',
       m_lime: '#E4EE8E',
@@ -28,12 +29,16 @@ module.exports = {
       },
       spacing:{
         
+      },
+      dropShadow:{
+        '2xl': ' 0px 8px 24px rgba(149, 157, 165, 0.2)'
       }
     },
   },
   variants: {
     extend: {
-      ringWidth:['hover','active']
+      ringWidth:['hover','active'],
+      dropShadow:['hover','active']
     },
   },
   plugins: [],

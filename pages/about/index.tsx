@@ -19,14 +19,10 @@ const About: NextPage = () => {
 
   const [git, setGit] = useState({
     data: {
-      name: 'note-san',
-      description: 'a note taking and sharing platform',
-      userImg: 'https://avatars.githubusercontent.com/u/45965174?v=4',
-      tags: ["nextjs",
-        "nodejs",
-        "note-app",
-        "postgresql",
-        "tailwindcss"], stars: 2, lang: 'TypeScript'
+      name: '',
+      description: '',
+      userImg: '',
+      tags: [], stars: 0, lang: ''
     }
   })
   const [width, height] = useDimension();
@@ -48,7 +44,7 @@ const About: NextPage = () => {
       }
     }
     getInfo();
-  })
+  },[])
 
   return (
     <div className={styles.container}>

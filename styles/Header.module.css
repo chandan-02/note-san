@@ -19,6 +19,6 @@
 }
 
 .text_style{
-    @apply font-poppins text-xl font-semibold px-7 flex pb-5 justify-center items-center cursor-pointer hover:underline md:pt-0 md:pb-0
+    @apply font-poppins text-xl font-semibold px-7 flex pb-5 justify-center items-center cursor-pointer transition-all hover:text-m_purple md:pt-0 md:pb-0
 }
 
