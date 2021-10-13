@@ -20,7 +20,6 @@ const LoginPls: FC<IProps> = ({ text, loading }) => {
                 <h1 className="px-10 text-center font-poppins py-3 pb-5 text-base md:text-xl">{text}</h1>
                 <div className="pb-2">
                     <SignIn loading={loading} />
-
                 </div>
             </div>
         </div>

@@ -21,7 +21,8 @@ module.exports = {
       m_lime: '#E4EE8E',
       m_blue:'#01D4FF',
       m_light_orange:'#FFC972',
-      yellow:colors.yellow
+      m_dark_purple:'#9376CC',
+      yellow:colors.yellow,
     },
     extend: {
       fontFamily:{

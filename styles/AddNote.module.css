@@ -1,0 +1,16 @@
+.container {
+    min-height:calc(100vh - theme('spacing.36'));
+}
+.container {
+    @apply flex flex-col items-center mx-5 my-3 md:mx-10 md:my-5 ;
+}
+.box{
+    @apply  flex flex-col w-full md:w-max
+}
+.visible{
+    @apply flex bg-black px-4 py-2 rounded items-center cursor-pointer transition-all
+}
+
+.colorSelect{
+    @apply flex items-center ;
+}
