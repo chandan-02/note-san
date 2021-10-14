@@ -18,7 +18,6 @@ const NewNote: NextPage = () => {
     const [session, loading] = useSession();
     const [user, user_img] = useAuth(session, loading);
     const router = useRouter();
-    const [db_user,setDB_USER] = useState<string>(''); 
 
     const [color, setColor] = useState<string>('m_light_orange');
     const [load, setLoad] = useState<boolean>(false)
@@ -39,7 +38,7 @@ const NewNote: NextPage = () => {
     const handleSave = async () => {
         if (text != '') {
             setLoad(true)
-            if (router.query.action == 'add' || router.query.action == undefined) {
+            if (router.query.action == 'add' && router.query.db_user) {
                 if (visible) {
                     try {
                         const res = await axios.post('/api/public/add/', {
@@ -65,7 +64,7 @@ const NewNote: NextPage = () => {
                             const res = await axios.post('/api/private/add/', {
                                 content: text,
                                 color: color,
-                                user: db_user
+                                user: router.query.db_user
                             })
                             if (res.data.success) {
                                 console.log(res.data.msg)
@@ -84,22 +83,6 @@ const NewNote: NextPage = () => {
             alert('pls enter some text')
         }
     }
-
-    useEffect(() => {
-        const userExistsCheck = async () => {
-            if (session && !loading) {
-                try {
-                    const res = await axios.post('/api/private/exists',{
-                        user:user
-                    })
-                    setDB_USER(res.data.msg);
-                }catch (error) {
-                    console.log(error)
-                }
-            }
-        }
-        userExistsCheck()
-    }, [session,loading,user])
 
     if (session && !loading) {
         return (

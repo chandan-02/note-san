@@ -14,13 +14,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             // console.log(user, ':', ress.rows[0].exists)
             if (!ress.rows[0].exists) {
                 query = `CREATE TABLE ${user}(
-                        id SERIAL PRIMARY KEY NOT NULL,
+                        id UUID PRIMARY KEY NOT NULL,
                         color VARCHAR(100) NOT NULL,
                         note TEXT NOT NULL
                     );`;
                 await pool.query(query);
             }
-            res.status(200).json({ success: true, msg: user })
+            res.status(201).json({ success: true, msg: user })
+        }else {
+            res.status(200).json({ success: true, msg: "no_username" })
         }
     } catch (error) {
         res.status(400).json({ success: false, msg: error })
