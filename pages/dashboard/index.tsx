@@ -12,7 +12,12 @@ const Dashboard: NextPage = () => {
   const [user, img] = useAuth(session, loading);
   
   const handlerNewNote = ():void=> {
-    router.push('/dashboard/addNote')
+    router.push({
+      pathname:'dashboard/addEditNote/',
+      query:{
+        action:'add'
+      }
+    })
   }
 
   if (session && !loading) {

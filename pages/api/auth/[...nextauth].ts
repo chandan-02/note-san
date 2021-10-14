@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
-import DB_URL from '../../../helper/heroku_dburl';
 
 export default NextAuth({
     providers: [
@@ -14,12 +13,4 @@ export default NextAuth({
             authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code'
         })
     ],
-    database: {
-        type: "postgres",
-        url: DB_URL,
-        ssl: {
-            rejectUnauthorized: false
-        },
-        synchronize:true
-    }
 });

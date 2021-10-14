@@ -11,7 +11,7 @@ interface IProps {
 
 const LoginPls: FC<IProps> = ({ text, loading }) => {
 
-    const [height, width] = useDimension();
+    const [width, height] = useDimension();
 
     return (
         <div className={styles.container}>

@@ -7,9 +7,6 @@
 .box{
     @apply  flex flex-col w-full md:w-max
 }
-.visible{
-    @apply flex bg-black px-4 py-2 rounded items-center cursor-pointer transition-all
-}
 
 .colorSelect{
     @apply flex items-center ;

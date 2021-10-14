@@ -11,5 +11,5 @@ const getCreds = async():Promise<any> => {
     const connectionString = await response.data[0].value;
     return connectionString;
 }
-
-export default await getCreds(); 
+let db = await getCreds()
+export default db ; 
