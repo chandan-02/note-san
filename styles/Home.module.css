@@ -2,5 +2,20 @@
     min-height:calc(100vh - theme('spacing.36'));
 }
 .container {
-    @apply flex ;
+    @apply flex flex-col mx-0 my-4 md:my-5 ;
+}
+.private {
+    @apply mt-5
+}
+.mainSection {
+    @apply flex flex-wrap mx-5;
+}   
+.title {
+    @apply flex items-center cursor-pointer ml-3 md:ml-5 w-max
+}
+.heading {
+    @apply font-poppins text-lg md:text-xl ml-3 md:ml-5 transition-all hover:text-m_dark_blue;
+}
+.icon {
+    @apply h-7 w-7 text-black transition-all hover:text-m_dark_blue ml-2
 }

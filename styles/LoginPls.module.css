@@ -1,10 +1,8 @@
-.container {
-    min-height:calc(100vh - theme('spacing.36'));
-}
+
 .container {
     @apply flex mx-5 md:mx-10 ;
 }
 
 .box{
-    @apply bg-m_gray w-full h-1/2 flex flex-col justify-center items-center rounded-md py-7 my-10 ;
+    @apply bg-m_gray w-full h-1/2 flex flex-col justify-center items-center rounded-md py-7 my-6 ;
 }

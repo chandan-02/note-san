@@ -6,12 +6,12 @@ import styles from '../../styles/Dashboard.module.css';
 import LoginPls from '../../components/loginpls';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/dist/client/image';
+import Image from 'next/image';
 import useSWR from 'swr';
-import {INote} from '../../interface/notes';
+import { INote } from '../../interface/notes';
 import DashNotes from '../../components/dashnotes';
 const axios = require('axios').create({
-  baseURL: process.env.API_BASE
+  baseURL: process.env.API_BASE_URL
 })
 
 const Dashboard: NextPage = () => {
@@ -65,43 +65,47 @@ const Dashboard: NextPage = () => {
   if (session && !loading && !error) {
     return (
       <div className={styles.container}>
-        <h1 className="font-poppins text-lg md:text-xl md:mx-5">Welcome, {user}</h1>
+        <h1 className="font-poppins text-lg md:text-xl mx-5 md:mx-10">Welcome, {user}</h1>
         <div className={styles.headTab}>
           {/* add button */}
           <div onClick={() => handlerNewNote()}
             className={styles.addBtn}>
             <h1 className="text-white font-semibold text-base md:text-lg flex items-center">Add New Note
-            {
-              db_user != '' && db_user != 'no_username' ? 
-              <PlusIcon  className="h-5 w-5 text-white ml-2"/>
-              :
-              <Image src="/load_fff.svg" alt="load" height="30"  width="30"/>
-            }
+              {
+                db_user != '' && db_user != 'no_username' ?
+                  <PlusIcon className="h-5 w-5 text-white ml-2" />
+                  :
+                  <Image src="/load_fff.svg" alt="load" height="30" width="30" />
+              }
             </h1>
           </div>
         </div>
 
-        <div className="my-3 h-1 bg-pink-100 rounded-full md:mx-5"></div>
+        <div className="my-3 h-1 bg-pink-100 rounded-full mx-5 md:mx-10"></div>
 
         {/* main section */}
         <div className={styles.mainSection}>
           {data != undefined ? (
-            data.data.notes.length == 0 ? <h1 className="my-5 font-poppins w-full text-center text-gray-600 font-semibold text-base md:text-lg">You {`don't`} have any notes, add some notes to show here 😀</h1>:
+            data.data.notes.length == 0 ? <h1 className="my-5 font-poppins w-full text-center text-gray-600 font-semibold text-base md:text-lg">You {`don't`} have any notes, add some notes to show here 😀</h1> :
 
-            data.data.notes.map((note: INote) => {
-              return <DashNotes key={note.id} note={note} db_user={db_user}/>
-            })
+              data.data.notes.map((note: INote) => {
+                return <DashNotes key={note.id} note={note} db_user={db_user} />
+              })
           ) :
             <div className="flex items-center justify-center w-full my-5">
-                <Image src='/load.svg' height="50" width="50" alt="loading" />
-                <h1 className="text-gray-600 font-semibold text-base md:text-lg font-poppins">loading notes... </h1>
+              <Image src='/load.svg' height="50" width="50" alt="loading" />
+              <h1 className="text-gray-600 font-semibold text-base md:text-lg font-poppins">loading notes... </h1>
             </div>
           }
         </div>
       </div>
     )
   }
-  return <LoginPls loading={loading} text={loading ? "Please wait, verifying session." : "Hello User, please login to view dashboard."} />
+  return (
+    <div className={styles.container}>
+      <LoginPls loading={loading} text={loading ? "Please wait, verifying session." : "Hello User, please login to view dashboard."} />
+    </div>
+  )
 }
 
 export default Dashboard;

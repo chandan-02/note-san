@@ -7,7 +7,7 @@ interface IProps {
 
 const UserIcon: FC<IProps> = ({ url }) => {
   const route = useRouter();
-
+ 
   return (
     <>
       {/* eslint-disable-next-line @next/next/no-img-element */}

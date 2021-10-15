@@ -2,7 +2,7 @@
     min-height:calc(100vh - theme('spacing.36'));
 }
 .container {
-    @apply flex flex-col mx-5 my-4 md:my-5 ;
+    @apply flex flex-col mx-0 my-4 md:my-5 ;
 }
 
 .addBtn {
@@ -10,9 +10,9 @@
 }
 
 .headTab{
-    @apply flex my-3 md:my-5 md:mx-5
+    @apply flex my-3 md:my-5 mx-5 md:mx-10
 }
 
 .mainSection {
-    @apply flex flex-wrap
+    @apply flex flex-wrap mx-5 md:mx-5
 }   
