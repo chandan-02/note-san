@@ -19,7 +19,7 @@ const DashNotes: FC<IDashNotes> = ({ note, db_user }) => {
                 pathname: `/dashboard/${note.id}`,
                 query: {
                     action: 'edit',
-                    user:note.shared_by,
+                    user: note.shared_by,
                     db_user: db_user
                 }
             })
@@ -29,17 +29,19 @@ const DashNotes: FC<IDashNotes> = ({ note, db_user }) => {
     const handleDel = async () => {
         if (note.id) {
             setload(true)
-            const res = await axios.delete('/api/private/del', {
-                data: {
-                    id: note.id,
-                    db_user: db_user,
-                    user: note.shared_by,
-                }
-            })
-            if (res.data.success && res.data.msg == 'public_note_del' || res.data.msg == 'private_note_del') {
-                mutate('/api/private/read');
-                setload(false);
-            } else {
+            try {
+                const res = await axios.delete('/api/private/del', {
+                    data: {
+                        id: note.id,
+                        db_user: db_user,
+                        user: note.shared_by,
+                    }
+                })
+                if (res.data.success && res.data.msg == 'public_note_del' || res.data.msg == 'private_note_del') {
+                    mutate('/api/private/read');
+                    setload(false);
+                } 
+            } catch (error) {
                 setload(false)
                 alert('something went wrong ')
             }

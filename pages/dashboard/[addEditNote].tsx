@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import styles from '../../styles/AddNote.module.css';
 import { ArrowNarrowLeftIcon } from '@heroicons/react/solid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/client';
 import LoginPls from '../../components/loginpls';
@@ -11,17 +11,25 @@ import ChooseColor from '../../components/chooseNoteColor';
 import useAuth from '../../helper/useAuth';
 import Image from 'next/image';
 const axios = require('axios').create({
-    baseURL: 'http://localhost:3000'
+    baseURL: process.env.API_BASE_URL
 })
+
+interface ILoad {
+    normal: boolean;
+    noteLoading: boolean;
+}
 
 const NewNote: NextPage = () => {
     const [session, loading] = useSession();
     const [user, user_img] = useAuth(session, loading);
+    const [isPublic, setIsPublic] = useState<string>('');
     const router = useRouter();
+
     const [color, setColor] = useState<string>('m_light_orange');
-    const [load, setLoad] = useState<boolean>(false)
-    const [visible, setVisible] = useState<boolean>(false)
+    const [visible, setVisible] = useState<boolean>(false);
     const [text, setText] = useState<string>('');
+
+    const [load, setLoad] = useState<ILoad>({ normal: false, noteLoading: false })
 
     const colorArr: Array<string> = ['m_purple', 'm_dark_orange', 'm_lime', 'm_blue', 'm_light_orange']
 
@@ -30,18 +38,83 @@ const NewNote: NextPage = () => {
         setText(e.target.value);
     }
 
-    const handleDelete = () => {
-        setText('')
+    const handleDelete = async() => {
+        const { user, addEditNote, db_user } = router.query;
+        if (router.query.addEditNote == 'draft') {
+            setText('');
+        } else {
+            try {
+                setLoad({...load,normal:true})
+                const response = typeof(user)=='string' && await axios.delete('/api/private/del', {
+                    data: {
+                        id: addEditNote,
+                        db_user: db_user,
+                        user:isPublic == 'public' ? user : null
+                    }
+                })   
+                if (response.data.msg == 'public_note_del' || response.data.msg == 'private_note_del') {
+                    console.log(response.data.msg);
+                    setLoad({...load,normal:false});
+                    setText('');
+                    router.push('/dashboard');
+                } 
+            } catch (error) {
+                setLoad({...load,normal:false});
+                alert('something went wrong.');
+            } 
+        }
     }
 
     const handleEdit = async () => {
-        
+        const { user, addEditNote, db_user } = router.query;
+        if (session && !loading && !load.noteLoading) {
+            if (isPublic == 'public') {
+                setLoad({ ...load, normal: true })
+                try {
+                    const resPublic = user && addEditNote && await axios.put('/api/public/edit', {
+                        id: addEditNote,
+                        shared_by: user,
+                        note: text,
+                        color: color,
+                    })
+                    if (resPublic.data.success) {
+                        console.log(resPublic.data.msg)
+                        setLoad({ ...load, normal: false })
+                        setText('');
+                        router.push('/dashboard')
+                    }
+                } catch (error) {
+                    setLoad({ ...load, normal: false })
+                    alert('Something went wrong')
+                }
+            }
+            if (isPublic == 'private') {
+                setLoad({ ...load, normal: true })
+                try {
+                    const resPrivate = db_user && addEditNote && await axios.put('/api/private/edit', {
+                        id: addEditNote,
+                        db_user: db_user,
+                        note: text,
+                        color: color,
+                    })
+                    if (resPrivate.data.success) {
+                        console.log(resPrivate.data.msg)
+                        setLoad({ ...load, normal: false })
+                        setText('');
+                        router.push('/dashboard')
+                    }
+                } catch (error) {
+                    setLoad({ ...load, normal: false })
+                    alert('Something went wrong')
+                }
+            }
+        }
     }
 
     const handleSave = async () => {
         if (text != '') {
             if (router.query.action == 'add' && router.query.db_user) {
-                setLoad(true)
+                setLoad({ ...load, normal: true })
                 if (visible) {
                     try {
                         const res = await axios.post('/api/public/add/', {
@@ -52,12 +125,12 @@ const NewNote: NextPage = () => {
                         })
                         if (res.data.success) {
                             console.log(res.data.msg)
-                            setLoad(false)
+                            setLoad({ ...load, normal: false })
                             setText('');
                             router.push('/dashboard')
                         }
                     } catch (error) {
-                        setLoad(false)
+                        setLoad({ ...load, normal: false })
                         alert('Something went wrong')
                     }
                 }
@@ -71,17 +144,17 @@ const NewNote: NextPage = () => {
                             })
                             if (res.data.success) {
                                 console.log(res.data.msg)
-                                setLoad(false)
+                                setLoad({ ...load, normal: false })
                                 setText('');
                                 router.push('/dashboard')
                             }
                         } catch (error) {
-                            setLoad(false)
+                            setLoad({ ...load, normal: false })
                             alert('Something went wrong')
                         }
                     }
                 }
-            }else{
+            } else {
                 alert('action : add not found, please go back & try again ')
             }
         } else {
@@ -89,7 +162,50 @@ const NewNote: NextPage = () => {
         }
     }
 
-    
+    useEffect(() => {
+        const { user, addEditNote, db_user } = router.query;
+        const getNote = async () => {
+            if (router.query.user == "") {
+                setIsPublic('private')
+                setLoad({ ...load, noteLoading: true })
+                try {
+                    const resPrivate = db_user != undefined && addEditNote != undefined && await axios.get('/api/private/note', {
+                        params: {
+                            id: addEditNote,
+                            db_user: db_user
+                        }
+                    })
+                    setText(resPrivate.data.note.note);
+                    setColor(resPrivate.data.note.color);
+                    setLoad({ ...load, noteLoading: false });
+                } catch (error) {
+                    setLoad({ ...load, noteLoading: false })
+                }
+
+            } else {
+                setIsPublic('public')
+                setLoad({ ...load, noteLoading: true })
+                try {
+                    const resPublic = user != undefined && addEditNote != undefined && await axios.get('/api/public/note', {
+                        params: {
+                            id: addEditNote,
+                            user: user
+                        }
+                    })
+                    setText(resPublic.data.note.note);
+                    setColor(resPublic.data.note.color);
+                    setLoad({ ...load, noteLoading: false });
+                } catch (error) {
+                    setLoad({ ...load, noteLoading: false })
+                }
+            }
+
+            isPublic == 'public' && setVisible(true);
+        }
+
+        getNote();
+
+    }, [router, isPublic])
 
     if (session && !loading) {
         return (
@@ -119,17 +235,31 @@ const NewNote: NextPage = () => {
                     </textarea>
 
                     {/* Set visibilty*/}
-                    <div className="flex my-3 items-center">
-                        <h1 className="font-poppins text-base md:text-lg">Visibilty -- </h1>&nbsp;
-                        <Visible handler={setVisible} visible={visible} />
+                    <div className={`flex my-${router.query.addEditNote == 'draft' ? 3 : 0} items-center`} >
+                        {
+                            router.query.addEditNote == 'draft' ?
+                                <>
+                                    <h1 className="font-poppins text-base md:text-lg">Visibilty :</h1>&nbsp;
+                                    <Visible handler={setVisible} visible={visible} />
+                                </>
+                                :
+                                null
+                        }
+                        {
+                            !load.noteLoading ? null :
+                                <div className="flex my-3 items-center">
+                                    <Image src='/load.svg' alt="load_svg" height="40" width="40" />
+                                    <h1 className="font-poppins">loading note</h1>
+                                </div>
+                        }
                     </div>
 
                     {/* Submit & delete buttons*/}
                     <div className="flex my-3 items-center">
                         {
-                            !load ?
+                            !load.normal ?
                                 <>
-                                    <SaveDelete handler={handleSave} type="save" />
+                                    <SaveDelete handler={router.query.addEditNote == 'draft' ? handleSave : handleEdit} type="save" />
                                     <SaveDelete handler={handleDelete} type="del" />
                                 </>
                                 :
@@ -140,6 +270,7 @@ const NewNote: NextPage = () => {
                         }
                     </div>
                 </div>
+
             </div>
         )
     }

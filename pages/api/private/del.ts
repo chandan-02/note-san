@@ -8,10 +8,10 @@ const handler = async(req:NextApiRequest,res:NextApiResponse) => {
         const user_db = req.body.db_user;
         const user = req.body.user;
         const isPublic = user ? 'public' : 'private'; 
-
+        console.log(isPublic)
         if(isPublic == 'public'){
             try {
-                let query =  `DELETE FROM public_notes WHERE id='${id}' AND shared_by='${user}'`;
+                let query = `DELETE FROM public_notes WHERE id='${id}' AND shared_by='${user}'`;
                 const resd = await pool.query(query);
                 return resd.command == 'DELETE' && resd.rowCount == 1 && res.status(200).json({success:true,msg:'public_note_del'})
             } catch (error) {

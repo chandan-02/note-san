@@ -11,7 +11,7 @@ import useSWR from 'swr';
 import {INote} from '../../interface/notes';
 import DashNotes from '../../components/dashnotes';
 const axios = require('axios').create({
-  baseURL: process.env.API_BASE_URL
+  baseURL: process.env.API_BASE
 })
 
 const Dashboard: NextPage = () => {
