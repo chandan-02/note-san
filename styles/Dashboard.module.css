@@ -2,22 +2,17 @@
     min-height:calc(100vh - theme('spacing.36'));
 }
 .container {
-    @apply flex flex-col mx-5 my-3 md:mx-10 md:my-5 ;
+    @apply flex flex-col mx-5 my-4 md:my-5 ;
 }
 
 .addBtn {
-    @apply bg-m_dark_purple rounded-lg py-2 px-4 md:px-5 cursor-pointer hover:bg-m_purple hover:shadow-md transition-all flex justify-center items-center;
+    @apply bg-black rounded-md py-2 px-5 md:px-5 cursor-pointer hover:bg-gray-800 hover:shadow-md transition-all flex justify-center items-center;
 }
 
 .headTab{
-    @apply flex py-2 md:py-4
+    @apply flex my-3 md:my-5 md:mx-5
 }
-.modal {
-    @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none;
-}
-.modalMain {
-    @apply border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none;
-}
+
 .mainSection {
-    @apply bg-blue-300
+    @apply flex flex-wrap
 }   

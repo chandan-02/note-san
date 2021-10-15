@@ -3,19 +3,7 @@ import styles from '../styles/GitRepo.module.css';
 import Image from 'next/image';
 import useDimension from '../helper/getDimension';
 import Link from 'next/link';
-
-interface IGit {
-    name: string,
-    userImg: string;
-    description: string;
-    lang: string;
-    stars: number,
-    tags: Array<string>,
-}
-
-interface IProps {
-    gitInfo: IGit,
-}
+import IProps from '../interface/git';
 
 const GitRepo: FC<IProps> = ({ gitInfo }) => {
 

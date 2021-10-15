@@ -1,12 +1,7 @@
 import { FC } from 'react';
+import {IChooseNoteColorProps } from '../interface/common';
 
-interface IProps {
-    eachColor:string;
-    stateColor:string;
-    handler(args:string):void;
-}
-
-const ChooseColor:FC<IProps> = ({eachColor,stateColor,handler}) => {
+const ChooseColor:FC<IChooseNoteColorProps> = ({eachColor,stateColor,handler}) => {
     return (
         <div key={eachColor}
             className={`h-5 w-5 bg-${eachColor} cursor-pointer rounded-full mx-1 md:mx-2 ring-gray-500 ring-offset-2 transition-all ${stateColor == eachColor && 'ring-2'}`}

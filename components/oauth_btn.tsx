@@ -1,16 +1,11 @@
-import React from 'react'
+import {FC} from 'react'
 import styles from '../styles/Oauthbtn.module.css';
 import { signIn, signOut } from 'next-auth/client'
 import Link from 'next/link';
 import Image from 'next/image';
+import {IOauthBtnProps} from '../interface/common';
 
-interface IProps {
-    btnName: string,
-    btnText: string,
-    action: string
-}
-
-const OAuth: React.FC<IProps> = ({ btnName, btnText, action }) => {
+const OAuth:FC<IOauthBtnProps> = ({ btnName, btnText, action }) => {
     const handleSignIn = (e: any) => {
         e.preventDefault();
         action == 'signin' ? signIn(btnName) : signOut();

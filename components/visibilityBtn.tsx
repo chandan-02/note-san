@@ -1,12 +1,8 @@
 import { FC } from 'react';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
+import {IVisibilityBtnProps} from '../interface/common';
 
-interface IProps {
-    visible: boolean,
-    handler(args:boolean): void,
-}
-
-const Visible: FC<IProps> = ({ visible, handler }) => {
+const Visible: FC<IVisibilityBtnProps> = ({ visible, handler }) => {
     if (visible) {
 
         return (

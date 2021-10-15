@@ -1,12 +1,8 @@
 import { FC } from 'react';
 import { CheckIcon, TrashIcon } from '@heroicons/react/solid';
+import {ISaveDeleteBtnProps} from '../interface/common'
 
-interface IProps {
-    type: string,
-    handler(): void
-}
-
-const SaveDelete: FC<IProps> = ({ type, handler }) => {
+const SaveDelete: FC<ISaveDeleteBtnProps> = ({ type, handler }) => {
     if (type == "del") {
         return (
             <div className="ml-2 flex bg-pink-700 px-5 py-2 rounded items-center cursor-pointer transition-all filter hover:shadow-md" 

@@ -3,13 +3,9 @@ import Image from 'next/image';
 import styles from '../styles/LoginPls.module.css';
 import useDimension from '../helper/getDimension';
 import SignIn from '../components/sign_in';
+import {ILoginPlsProps } from '../interface/common';
 
-interface IProps {
-    text: string;
-    loading: boolean;
-}
-
-const LoginPls: FC<IProps> = ({ text, loading }) => {
+const LoginPls: FC<ILoginPlsProps> = ({ text, loading }) => {
 
     const [width, height] = useDimension();
 

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import styles from '../../styles/AddNote.module.css';
 import { ArrowNarrowLeftIcon } from '@heroicons/react/solid';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/client';
 import LoginPls from '../../components/loginpls';
@@ -18,7 +18,6 @@ const NewNote: NextPage = () => {
     const [session, loading] = useSession();
     const [user, user_img] = useAuth(session, loading);
     const router = useRouter();
-
     const [color, setColor] = useState<string>('m_light_orange');
     const [load, setLoad] = useState<boolean>(false)
     const [visible, setVisible] = useState<boolean>(false)
@@ -35,10 +34,14 @@ const NewNote: NextPage = () => {
         setText('')
     }
 
+    const handleEdit = async () => {
+        
+    }
+
     const handleSave = async () => {
         if (text != '') {
-            setLoad(true)
             if (router.query.action == 'add' && router.query.db_user) {
+                setLoad(true)
                 if (visible) {
                     try {
                         const res = await axios.post('/api/public/add/', {
@@ -78,11 +81,15 @@ const NewNote: NextPage = () => {
                         }
                     }
                 }
+            }else{
+                alert('action : add not found, please go back & try again ')
             }
         } else {
             alert('pls enter some text')
         }
     }
+
+    
 
     if (session && !loading) {
         return (
