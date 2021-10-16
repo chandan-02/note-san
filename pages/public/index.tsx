@@ -6,7 +6,7 @@ import useSWR, {useSWRConfig } from 'swr';
 import PublicNotes from '../../components/publicNotes';
 import { IPublicNote } from '../../interface/notes';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
 const axios = require('axios').create({
   baseURL: process.env.API_BASE_URL
@@ -15,6 +15,8 @@ const axios = require('axios').create({
 const PublicNote: NextPage = () => {
   const router = useRouter();
   const { mutate } = useSWRConfig();
+  const [load,setLoad] = useState<boolean>(false);
+
   const fetcherPublic2 = async (url: string) => {
     const res = await axios.get(url)
     return res;
@@ -22,8 +24,14 @@ const PublicNote: NextPage = () => {
   const { data: data2, error: error2 } = useSWR('/api/public/read', fetcherPublic2);
 
   useEffect(() => {
+    setLoad(true);
     mutate('/api/public/read');
-  },[mutate])
+    if (data2 != undefined){
+      if (data2.data.notes.length > 6){
+        setLoad(false);
+      } 
+    }
+  },[mutate,data2]);
 
   return (
     <div className={styles.container}>
@@ -43,6 +51,9 @@ const PublicNote: NextPage = () => {
           </div>
         }
       </div>
+        <div className="mx-5 md:mx-10 ">
+          {load && <Image src="/load.svg" height="35" width="35" alt="load" />}
+        </div>
     </div>
   )
 }

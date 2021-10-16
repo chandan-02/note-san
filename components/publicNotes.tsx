@@ -1,10 +1,24 @@
+import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { UserCircleIcon } from '@heroicons/react/solid';
+// import { UserCircleIcon } from '@heroicons/react/solid';
 import { IPublicNotes } from '../interface/notes';
 
 const PublicNotes: FC<IPublicNotes> = ({ note }) => {
+    const router = useRouter();
+    const handleView = () => {
+        if (note.id && note.shared_by) {
+            router.push({
+                pathname: `/public/note`,
+                query: {
+                    id: note.id,
+                    user: note.shared_by,
+                }
+            })
+        }
+    }
+
     return (
-        <div className="my-4 md:m-5 w-full md:w-64 text-sm ">
+        <div className="my-4 md:m-5 w-full md:w-64 text-sm " onClick={()=>handleView()}>
             <div className={`bg-${note.color} p-5 rounded filter hover:shadow-lg h-60 transition-all cursor-pointer flex flex-col justify-between`}>
                 <h1 className="font-poppins">{note.note.length > 140 ? note.note.substring(0, 270) + '.....' : note.note}</h1>
             </div>

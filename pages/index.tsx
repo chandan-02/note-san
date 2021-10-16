@@ -10,6 +10,7 @@ import { INote,IPublicNote } from '../interface/notes';
 import DashNotes from '../components/dashnotes';
 import PublicNotes from '../components/publicNotes';
 import Image from 'next/image';
+import useDimension from '../helper/getDimension';
 import { useRouter } from 'next/router';
 const axios = require('axios').create({
   baseURL: process.env.API_BASE_URL
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
   const [session, loading] = useSession();
   const [user, img] = useAuth(session, loading);
   const [db_user, setDB_USER] = useState<string>('');
-
+  const [width,height] = useDimension();
   const fetcher = async (url: string) => {
     // console.log('fetcher : ', user, db_user)
     if (session && !loading) {
@@ -76,8 +77,8 @@ const Home: NextPage = () => {
               }
             })
           ) :
-            <div className="flex items-center justify-center w-full my-5">
-              <Image src='/load.svg' height="50" width="50" alt="loading" />
+            <div className="flex items-center justify-center w-full my-5 transition-all animate-pulse">
+              <Image src='/load.svg' height={width < 768 ? "40":"50"} width={width < 768 ? "40":"50"} alt="loading" />
               <h1 className="text-gray-600 font-semibold text-base md:text-lg font-poppins">loading public notes... </h1>
             </div>
             }
@@ -107,8 +108,8 @@ const Home: NextPage = () => {
                     }
                   })
               ) :
-                <div className="flex items-center justify-center w-full my-5">
-                  <Image src='/load.svg' height="50" width="50" alt="loading" />
+                <div className="flex items-center justify-center w-full my-5 transition-all animate-pulse">
+                  <Image src='/load.svg' height={width < 768 ? "40":"50"} width={width < 768 ? "40":"50"} alt="loading" />
                   <h1 className="text-gray-600 font-semibold text-base md:text-lg font-poppins">loading your personal notes... </h1>
                 </div>
               }

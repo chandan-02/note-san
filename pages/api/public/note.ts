@@ -7,7 +7,7 @@ const handler = async(req:NextApiRequest,res:NextApiResponse) => {
 
     if (id != undefined && user != undefined) {
         try {
-            let query = `SELECT note,color FROM public_notes WHERE id='${id}' AND shared_by='${user}'`;
+            let query = `SELECT * FROM public_notes WHERE id='${id}' AND shared_by='${user}'`;
             const data =  await pool.query(query);   
             return res.status(200).json({success:true,note:data.rows[0]})
         } catch (error) {
