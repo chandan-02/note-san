@@ -8,12 +8,18 @@ import Image from 'next/image';
 const axios = require('axios').create({
     baseURL: process.env.API_BASE_URL
 })
-
+/**
+   * PurgeCSS:
+   * bg-m_purple
+   * bg-m_light_orange
+   * bg-m_dark_orange
+   * bg-m_lime
+   * bg-m_blue
+**/
 const Note: NextPage = () => {
 
     const router = useRouter();
     const [note, setNote] = useState({ note: null, color: null, user_img: '',shared_by: null });
-    const [color,setColor] = useState<string>('bg-'+note.color);
 
     useEffect(() => {
         const { user, note, id } = router.query;
@@ -27,7 +33,6 @@ const Note: NextPage = () => {
                     }
                 })
                 setNote(response.data.note);
-                setColor('bg-'+response.data.note.color)
             } catch (error) {
                 console.log(error)
             }
@@ -57,7 +62,7 @@ const Note: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={`mt-5 ${color} p-5 rounded-md cursor-default`}>
+                    <div className={`mt-5 bg-${note.color} p-5 rounded-md cursor-default`}>
                         {
                             note.note != null ?
                                 <div>

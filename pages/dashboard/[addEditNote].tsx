@@ -14,6 +14,15 @@ const axios = require('axios').create({
     baseURL: process.env.API_BASE_URL
 })
 
+/**
+   * PurgeCSS:
+   * bg-m_purple
+   * bg-m_light_orange
+   * bg-m_dark_orange
+   * bg-m_lime
+   * bg-m_blue
+**/
+
 interface ILoad {
     normal: boolean;
     noteLoading: boolean;

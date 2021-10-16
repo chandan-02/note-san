@@ -115,7 +115,7 @@ const Home: NextPage = () => {
               }
             </div>
             :
-            <LoginPls loading={loading} text={loading ? "Please wait, verifying session." : "Hello User, please login to personal notes."} />
+            <LoginPls loading={loading} text={loading ? "Please wait, verifying session." : "Hello User, please login to view personal notes."} />
         }
       </div>
 
