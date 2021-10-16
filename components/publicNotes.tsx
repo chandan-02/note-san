@@ -10,6 +10,11 @@ import { IPublicNotes } from '../interface/notes';
    * bg-m_dark_orange
    * bg-m_lime
    * bg-m_blue
+   * ring-m_purple
+   * ring-m_light_orange
+   * ring-m_dark_orange
+   * ring-m_lime
+   * ring-m_blue
 **/
 const PublicNotes: FC<IPublicNotes> = ({ note }) => {
     const router = useRouter();
@@ -29,7 +34,7 @@ const PublicNotes: FC<IPublicNotes> = ({ note }) => {
     return (
         <div className="my-4 md:m-5 w-full md:w-64 text-sm " onClick={() => handleView()}>
             <div className={`bg-${note.color} p-5 rounded filter hover:shadow-lg h-60 transition-all cursor-pointer flex flex-col justify-between`}>
-                <h1 className="font-poppins">{note.note.length > 140 ? note.note.substring(0, 270) + '.....' : note.note}</h1>
+                <h1 className={`font-poppins ${note.note.search(' ') > 27 && 'truncate'} ${note.note.search(' ') == -1 && 'truncate'}`}>{note.note.length > 140 ? note.note.substring(0, 270) + '.....' : note.note}</h1>
             </div>
             <div className="flex items-center mt-3 cursor-default">
                 <div>

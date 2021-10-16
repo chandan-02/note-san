@@ -21,6 +21,11 @@ const axios = require('axios').create({
    * bg-m_dark_orange
    * bg-m_lime
    * bg-m_blue
+   * ring-m_purple
+   * ring-m_light_orange
+   * ring-m_dark_orange
+   * ring-m_lime
+   * ring-m_blue
 **/
 
 interface ILoad {
@@ -221,7 +226,7 @@ const NewNote: NextPage = () => {
             <div className={styles.container}>
                 <div className={styles.box}>
 
-                    <div className="flex items-center cursor-pointer" onClick={() => router.push('/dashboard')}>
+                    <div className="flex items-center cursor-pointer w-max" onClick={() => router.push('/dashboard')}>
                         <ArrowNarrowLeftIcon className="h-10 w-10 text-blue-500" />
                         <h1 className="pl-2 font-poppins font-semibold text-xl">Go back </h1>
                     </div>

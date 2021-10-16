@@ -15,6 +15,11 @@ const axios = require('axios').create({
    * bg-m_dark_orange
    * bg-m_lime
    * bg-m_blue
+   * ring-m_purple
+   * ring-m_light_orange
+   * ring-m_dark_orange
+   * ring-m_lime
+   * ring-m_blue
 **/
 const Note: NextPage = () => {
 
@@ -45,7 +50,7 @@ const Note: NextPage = () => {
             <div className=" flex flex-col justify-center items-center mx-5 md:mx-10">
                 <div className=" flex flex-col w-full md:w-1/2 ">
 
-                    <div className="flex items-center cursor-pointer " onClick={() => router.back()}>
+                    <div className="flex items-center cursor-pointer w-max" onClick={() => router.back()}>
                         <ArrowNarrowLeftIcon className="h-10 w-10 text-blue-500" />
                         <h1 className="pl-2 font-poppins font-semibold text-xl"> Go back </h1>
                     </div>

@@ -35,7 +35,7 @@ const PublicNote: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className="flex items-center cursor-pointer mx-5 md:mx-10" onClick={() => router.push('/')}>
+      <div className="flex items-center cursor-pointer mx-5 md:mx-10 w-max" onClick={() => router.push('/')}>
         <ArrowNarrowLeftIcon className="h-10 w-10 text-blue-500" />
         <h1 className="pl-2 font-poppins font-semibold text-xl"> All public notes</h1>
       </div>

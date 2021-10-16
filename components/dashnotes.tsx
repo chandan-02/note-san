@@ -15,6 +15,11 @@ const axios = require('axios').create({
    * bg-m_dark_orange
    * bg-m_lime
    * bg-m_blue
+   * ring-m_purple
+   * ring-m_light_orange
+   * ring-m_dark_orange
+   * ring-m_lime
+   * ring-m_blue
 **/
 
 const DashNotes: FC<IDashNotes> = ({ note, db_user }) => {
