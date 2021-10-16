@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC ,useState,useEffect} from 'react';
 import { IDashNotes } from '../interface/notes';
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
@@ -12,6 +12,11 @@ const DashNotes: FC<IDashNotes> = ({ note, db_user }) => {
     const { mutate } = useSWRConfig();
     const router = useRouter();
     const [load, setload] = useState<boolean>(false)
+    const [color,setColor] = useState<string>('');
+
+    useEffect(() => {
+        setColor('bg-'+note.color);
+      },[])
 
     const handleEdit = () => {
         if (note.id && db_user != '' && db_user != 'no_username') {
@@ -49,7 +54,7 @@ const DashNotes: FC<IDashNotes> = ({ note, db_user }) => {
     }
 
     return (
-        <div className={`bg-${note.color} my-2 md:m-5 w-full md:w-64 p-5 text-sm rounded filter hover:shadow-lg h-60 transition-all cursor-pointer flex flex-col justify-between`}>
+        <div className={`${color} my-2 md:m-5 w-full md:w-64 p-5 text-sm rounded filter hover:shadow-lg h-60 transition-all cursor-pointer flex flex-col justify-between`}>
             <h1 className="font-poppins">{note.note.length > 140 ? note.note.substring(0, 200) + '.....' : note.note}</h1>
             <div className="flex items-center ">
                 <PencilAltIcon onClick={() => handleEdit()} className="h-5 w-5 text-black mr-4 hover:text-blue-700" />
