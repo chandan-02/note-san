@@ -1,3 +1,4 @@
+import {IGit} from '../interface/git'
 const axios = require('axios').create({
     baseURL: 'https://api.github.com/repos',
     headers: {
@@ -5,15 +6,6 @@ const axios = require('axios').create({
         Accept: "Accept: application/vnd.github.v3+json"
     }
 })
-
-interface IGit {
-    name:string,
-    userImg: string;
-    description: string;
-    lang: string;
-    stars: number,
-    tags: Array<string>,
-}
 
 const getInfo = async (): Promise<any> => {
     const result = await axios.get('/chandan-02/note-san');

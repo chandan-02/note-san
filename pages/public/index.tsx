@@ -41,7 +41,7 @@ const PublicNote: NextPage = () => {
       </div>
       <div className={styles.mainSection}>
         {data2 != undefined ? (
-          data2.data.notes.map((note: IPublicNote, i: number) => {
+          data2.data.notes.map((note: IPublicNote) => {
             return <PublicNotes key={note.id} note={note} />
           })
         ) :

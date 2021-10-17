@@ -1,4 +1,4 @@
-interface IGit {
+export interface IGit {
     name: string,
     userImg: string;
     description: string;
