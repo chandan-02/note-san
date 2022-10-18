@@ -65,10 +65,10 @@ const About: NextPage = () => {
         </div>
       </div>
 
-      <div className={styles.bottom}>
+      {/* <div className={styles.bottom}>
         <h1 className={styles.tech}>Github&nbsp; <p className="text-m_dark_blue">Repository </p></h1>
         <GitRepo gitInfo={git.data} />
-      </div>
+      </div> */}
 
       <h1 className={styles.tech}>Note</h1>
           <div className="flex items-center justify-center pb-20 mx-5 md:mx-0 text-center">
