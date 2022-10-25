@@ -11,10 +11,10 @@ const CustomComponent = React.forwardRef(function imgComponent(){
 const Footer: NextComponentType = () => {
     return (
         <div className={styles.container}>
-            <Link href="https://github.com/swapnil-101/note-san" passHref>
+            <Link href="https://github.com/chandan-02/note-san" passHref>
                 <CustomComponent/>
             </Link>
-            <Link href="https://github.com/swapnil-101/note-san" passHref>
+            <Link href="https://github.com/chandan-02/note-san" passHref>
                 <h1 className={styles.text}>note-san github</h1>
             </Link>
         </div>
